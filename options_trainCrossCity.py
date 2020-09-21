@@ -3,17 +3,17 @@ import argparse
 FROM_SCRATCH = True
 TM = False
 GAN = 'Vanilla'  # 'Vanilla' or 'DHA'
-ENT = True
+ENT = False
 
 SAVE_PRED_EVERY = 5000
 NUM_STEPS_STOP = 150000  # early stopping
 NUM_STEPS = 200000
 
 SOURCE = 'GTA5'  # 'GTA5' or 'SYNTHIA'
-TARGET = 'CityScapes'  # 'CityScapes' or 'IDD'
+TARGET = 'Rio'  # 'Rio' -> 'Rome' -> 'Taipei' -> 'Tokyo'
 SET = 'train'
 
-DIR_NAME = 'AdvEnt_GC'
+DIR_NAME = 'AdaptSegNet_GR'
 
 LEARNING_RATE = 2.5e-4
 MOMENTUM = 0.9
@@ -26,8 +26,8 @@ LAMBDA_ADV2 = 0.001
 LAMBDA_ADV1 = 0.0002
 LAMBDA_SEG2 = 1
 LAMBDA_SEG1 = 0.1
-LAMBDA_DISTILL2 = 0.2
-LAMBDA_DISTILL1 = 0.02
+LAMBDA_DISTILL2 = 0.1
+LAMBDA_DISTILL1 = 0.01
 
 RANDOM_SEED = 1338
 
@@ -39,21 +39,21 @@ NUM_WORKERS = 4
 if SOURCE == 'GTA5':
     DATA_DIRECTORY = '/work/GTA5'
     DATA_LIST_PATH = './dataset/gta5_list/train.txt'
-    NUM_CLASSES = 18
 elif SOURCE == 'SYNTHIA':
     DATA_DIRECTORY = '/work/SYNTHIA'
     DATA_LIST_PATH = './dataset/synthia_list/train.txt'
-    NUM_CLASSES = 13
 
-if TARGET == 'CityScapes':
-    DATA_DIRECTORY_TARGET = '/work/CityScapes'
-    DATA_LIST_PATH_TARGET = './dataset/cityscapes_list/train.txt'
+DATA_DIRECTORY_TARGET = '/work/NTHU_Datasets'
+if TARGET == 'Rio':
     NUM_TARGET = 1
-elif TARGET == 'IDD':
-    DATA_DIRECTORY_TARGET = '/work/IDD'
-    DATA_LIST_PATH_TARGET = './dataset/idd_list/train.txt'
+elif TARGET == 'Rome':
     NUM_TARGET = 2
+elif TARGET == 'Taipei':
+    NUM_TARGET = 3
+elif TARGET == 'Tokyo':
+    NUM_TARGET = 4
 
+NUM_CLASSES = 13
 INPUT_SIZE = '1024,512'
 EVAL_TARGET = -1
 
@@ -98,8 +98,6 @@ class TrainOptions(BaseOptions):
                             help="Comma-separated string with height and width of source images.")
         self.parser.add_argument("--data-dir-target", type=str, default=DATA_DIRECTORY_TARGET,
                             help="Path to the directory containing the target dataset.")
-        self.parser.add_argument("--data-list-target", type=str, default=DATA_LIST_PATH_TARGET,
-                            help="Path to the file listing the images in the target dataset.")
         self.parser.add_argument("--learning-rate", type=float, default=LEARNING_RATE,
                             help="Base learning rate for training with polynomial decay.")
         self.parser.add_argument("--learning-rate-D", type=float, default=LEARNING_RATE_D,

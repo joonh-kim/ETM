@@ -1,19 +1,16 @@
 import argparse
 
-FROM_SCRATCH = True
-TM = False
-GAN = 'Vanilla'  # 'Vanilla' or 'DHA'
-ENT = True
+BATCH_SIZE = 1
+NUM_WORKERS = 4
+INPUT_SIZE = '1024,512'
 
 SAVE_PRED_EVERY = 5000
 NUM_STEPS_STOP = 150000  # early stopping
 NUM_STEPS = 200000
 
 SOURCE = 'GTA5'  # 'GTA5' or 'SYNTHIA'
-TARGET = 'CityScapes'  # 'CityScapes' or 'IDD'
-SET = 'train'
 
-DIR_NAME = 'AdvEnt_GC'
+DIR_NAME = 'Baseline_H_G'
 
 LEARNING_RATE = 2.5e-4
 MOMENTUM = 0.9
@@ -22,39 +19,21 @@ POWER = 0.9
 
 LEARNING_RATE_D = 1e-4
 
-LAMBDA_ADV2 = 0.001
-LAMBDA_ADV1 = 0.0002
-LAMBDA_SEG2 = 1
-LAMBDA_SEG1 = 0.1
-LAMBDA_DISTILL2 = 0.2
-LAMBDA_DISTILL1 = 0.02
-
 RANDOM_SEED = 1338
-
 IGNORE_LABEL = 255
-
-BATCH_SIZE = 1
-NUM_WORKERS = 4
+FROM_SCRATCH = True
+TM = False
+SET = 'train'
 
 if SOURCE == 'GTA5':
     DATA_DIRECTORY = '/work/GTA5'
     DATA_LIST_PATH = './dataset/gta5_list/train.txt'
-    NUM_CLASSES = 18
 elif SOURCE == 'SYNTHIA':
     DATA_DIRECTORY = '/work/SYNTHIA'
     DATA_LIST_PATH = './dataset/synthia_list/train.txt'
-    NUM_CLASSES = 13
 
-if TARGET == 'CityScapes':
-    DATA_DIRECTORY_TARGET = '/work/CityScapes'
-    DATA_LIST_PATH_TARGET = './dataset/cityscapes_list/train.txt'
-    NUM_TARGET = 1
-elif TARGET == 'IDD':
-    DATA_DIRECTORY_TARGET = '/work/IDD'
-    DATA_LIST_PATH_TARGET = './dataset/idd_list/train.txt'
-    NUM_TARGET = 2
-
-INPUT_SIZE = '1024,512'
+NUM_CLASSES = 13
+NUM_TARGET = -1
 EVAL_TARGET = -1
 
 # We used a pre-trained file from a source code of AdaptSegNet.
@@ -81,7 +60,6 @@ class TrainOptions(BaseOptions):
         # Training options
 
         self.parser.add_argument("--source", type=str, default=SOURCE)
-        self.parser.add_argument("--target", type=str, default=TARGET)
         self.parser.add_argument("--num-target", type=int, default=NUM_TARGET)
         self.parser.add_argument("--eval-target", type=int, default=EVAL_TARGET)
         self.parser.add_argument("--batch-size", type=int, default=BATCH_SIZE,
@@ -96,20 +74,10 @@ class TrainOptions(BaseOptions):
                             help="The index of the label to ignore during the training.")
         self.parser.add_argument("--input-size", type=str, default=INPUT_SIZE,
                             help="Comma-separated string with height and width of source images.")
-        self.parser.add_argument("--data-dir-target", type=str, default=DATA_DIRECTORY_TARGET,
-                            help="Path to the directory containing the target dataset.")
-        self.parser.add_argument("--data-list-target", type=str, default=DATA_LIST_PATH_TARGET,
-                            help="Path to the file listing the images in the target dataset.")
         self.parser.add_argument("--learning-rate", type=float, default=LEARNING_RATE,
                             help="Base learning rate for training with polynomial decay.")
         self.parser.add_argument("--learning-rate-D", type=float, default=LEARNING_RATE_D,
                             help="Base learning rate for discriminator.")
-        self.parser.add_argument("--lambda-adv1", type=float, default=LAMBDA_ADV1)
-        self.parser.add_argument("--lambda-adv2", type=float, default=LAMBDA_ADV2)
-        self.parser.add_argument("--lambda-seg1", type=float, default=LAMBDA_SEG1)
-        self.parser.add_argument("--lambda-seg2", type=float, default=LAMBDA_SEG2)
-        self.parser.add_argument("--lambda-distill1", type=float, default=LAMBDA_DISTILL1)
-        self.parser.add_argument("--lambda-distill2", type=float, default=LAMBDA_DISTILL2)
         self.parser.add_argument("--momentum", type=float, default=MOMENTUM)
         self.parser.add_argument("--num-classes", type=int, default=NUM_CLASSES)
         self.parser.add_argument("--num-steps", type=int, default=NUM_STEPS,
@@ -130,13 +98,9 @@ class TrainOptions(BaseOptions):
                             help="Regularisation parameter for L2-loss.")
         self.parser.add_argument("--set", type=str, default=SET,
                                  help="choose adaptation set.")
-        self.parser.add_argument("--gan", type=str, default=GAN,
-                            help="choose the GAN objective.")
-        self.parser.add_argument("--from-scratch", action='store_true', default=FROM_SCRATCH,
-                                 help="Whether to choose training from scratch or not")
         self.parser.add_argument("--tm", action='store_true', default=TM,
                                  help="Whether to choose adding TM or not")
-        self.parser.add_argument("--ent", action='store_true', default=ENT,
-                                 help="Whether to use entropy or not")
         self.parser.add_argument("--dir-name", type=str, default=DIR_NAME,
                                  help="snapshot directory")
+        self.parser.add_argument("--from-scratch", action='store_true', default=FROM_SCRATCH,
+                                 help="Whether to choose training from scratch or not")
