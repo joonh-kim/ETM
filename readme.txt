@@ -16,9 +16,12 @@ https://idd.insaan.iiit.ac.in/dataset/download/
 https://drive.google.com/file/d/1UUI4_101KCw17hEdqJIA7DlBSk4Q7ndu/view?usp=sharing
 (Download the file from the above link. Extract the file, and replace the gtFine folder in the IDD dataset with this one.)
 
+- Cross-City
+https://yihsinchen.github.io/segmentation_adaptation/
+
 Place four datasets in the ./data folder.
 
-Change each folder's name as 'GTA5', 'SYNTHIA', 'CityScapes', 'IDD', respectively.
+Change each folder's name as 'GTA5', 'SYNTHIA', 'CityScapes', 'IDD', 'NTHU_Datasets', respectively.
 
 
 2. Split Dataset
@@ -26,20 +29,42 @@ Change each folder's name as 'GTA5', 'SYNTHIA', 'CityScapes', 'IDD', respectivel
 Run ./dataset/split_dataset.py for GTA5 and SYNTHIA, respectively.
 
 
-3. Training
+3. Download Pre-trained Model
 
+https://drive.google.com/file/d/16TRsmELvoLKJuaijRJF9NK_SJq3YagYw/view?usp=sharing
+
+Place the file in the ./pretrained folder.
+
+
+4. Training
+
+For CityScapes and IDD
 Run train.py
 
 The options should be changed before running.
 Change the options by options_train.py
 
+For Cross-City
+Run trainCrossCity.py
 
-4. Evaluation
+The options should be changed before running.
+Change the options by options_trainCrossCity.py
 
+
+5. Evaluation
+
+For CityScapes and IDD
 Run evaluate.py
 
 The options should be changed before running.
 The options are contained in the evaluate.py file.
+
+
+For Cross-City
+Run evaluateCrossCity.py
+
+The options should be changed before running.
+The options are contained in the evaluateCrossCity.py file.
 
 
 * This codebase is heavily borrowed from a source code of AdaptSegNet.
