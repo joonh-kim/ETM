@@ -13,7 +13,7 @@ SOURCE = 'GTA5'  # 'GTA5' or 'SYNTHIA'
 TARGET = 'Rio'  # 'Rio' -> 'Rome' -> 'Taipei' -> 'Tokyo'
 SET = 'train'
 
-DIR_NAME = 'AdaptSegNet_GR'
+DIR_NAME = ''
 
 LEARNING_RATE = 2.5e-4
 MOMENTUM = 0.9
@@ -37,13 +37,13 @@ BATCH_SIZE = 1
 NUM_WORKERS = 4
 
 if SOURCE == 'GTA5':
-    DATA_DIRECTORY = '/work/GTA5'
+    DATA_DIRECTORY = './data/GTA5'
     DATA_LIST_PATH = './dataset/gta5_list/train.txt'
 elif SOURCE == 'SYNTHIA':
-    DATA_DIRECTORY = '/work/SYNTHIA'
+    DATA_DIRECTORY = './data/SYNTHIA'
     DATA_LIST_PATH = './dataset/synthia_list/train.txt'
 
-DATA_DIRECTORY_TARGET = '/work/NTHU_Datasets'
+DATA_DIRECTORY_TARGET = './data/NTHU_Datasets'
 if TARGET == 'Rio':
     NUM_TARGET = 1
 elif TARGET == 'Rome':

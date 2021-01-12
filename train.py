@@ -16,7 +16,7 @@ from dataset.synthia_dataset import SYNTHIADataSet
 from dataset.cityscapes_dataset import CityScapesDataSet
 from dataset.idd_dataset import IDDDataSet
 
-PRE_TRAINED_SEG = './snapshots/AdvEnt_GC/*.pth'
+PRE_TRAINED_SEG = './snapshots/*/*.pth'
 
 args = TrainOptions().parse()
 

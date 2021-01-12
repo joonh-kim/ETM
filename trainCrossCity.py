@@ -15,7 +15,7 @@ from dataset.gta5_dataset import GTA5DataSet
 from dataset.synthia_dataset import SYNTHIADataSet
 from dataset.crosscity_dataset import CrossCityDataSet
 
-PRE_TRAINED_SEG = './snapshots/AdaptSegNet_GR/*.pth'
+PRE_TRAINED_SEG = './snapshots/*/*.pth'
 
 args = TrainOptions().parse()
 

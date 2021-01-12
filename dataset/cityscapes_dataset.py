@@ -70,7 +70,7 @@ class CityScapesDataSet(data.Dataset):
 
 
 if __name__ == '__main__':
-    dst = CityScapesDataSet('working_directory/data/CityScapes', './cityscapes_list/val.txt',
+    dst = CityScapesDataSet('/work/CityScapes', './cityscapes_list/val.txt',
                             crop_size=(512, 256), ignore_label=255, set='val', num_classes=18)
     trainloader = data.DataLoader(dst, batch_size=1)
     for i, data in enumerate(trainloader):

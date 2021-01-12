@@ -1,9 +1,9 @@
 import argparse
 
 FROM_SCRATCH = True
-TM = False
-GAN = 'Vanilla'  # 'Vanilla' or 'DHA'
-ENT = True
+TM = True
+GAN = 'DHA'  # 'Vanilla' or 'DHA'
+ENT = False
 
 SAVE_PRED_EVERY = 5000
 NUM_STEPS_STOP = 150000  # early stopping
@@ -13,7 +13,7 @@ SOURCE = 'GTA5'  # 'GTA5' or 'SYNTHIA'
 TARGET = 'CityScapes'  # 'CityScapes' or 'IDD'
 SET = 'train'
 
-DIR_NAME = 'AdvEnt_GC'
+DIR_NAME = ''
 
 LEARNING_RATE = 2.5e-4
 MOMENTUM = 0.9
@@ -37,20 +37,20 @@ BATCH_SIZE = 1
 NUM_WORKERS = 4
 
 if SOURCE == 'GTA5':
-    DATA_DIRECTORY = '/work/GTA5'
+    DATA_DIRECTORY = './data/GTA5'
     DATA_LIST_PATH = './dataset/gta5_list/train.txt'
     NUM_CLASSES = 18
 elif SOURCE == 'SYNTHIA':
-    DATA_DIRECTORY = '/work/SYNTHIA'
+    DATA_DIRECTORY = './data/SYNTHIA'
     DATA_LIST_PATH = './dataset/synthia_list/train.txt'
     NUM_CLASSES = 13
 
 if TARGET == 'CityScapes':
-    DATA_DIRECTORY_TARGET = '/work/CityScapes'
+    DATA_DIRECTORY_TARGET = './data/CityScapes'
     DATA_LIST_PATH_TARGET = './dataset/cityscapes_list/train.txt'
     NUM_TARGET = 1
 elif TARGET == 'IDD':
-    DATA_DIRECTORY_TARGET = '/work/IDD'
+    DATA_DIRECTORY_TARGET = './data/IDD'
     DATA_LIST_PATH_TARGET = './dataset/idd_list/train.txt'
     NUM_TARGET = 2
 

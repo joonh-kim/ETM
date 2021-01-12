@@ -14,7 +14,7 @@ SOURCE = 'GTA5'  # 'GTA5' or 'SYNTHIA'
 NUM_TARGET = 1
 EVAL_TARGET = -1
 TM = True
-DIR_NAME = 'test'
+DIR_NAME = ''
 
 GTA5 = True
 SYNTHIA = False
@@ -27,16 +27,16 @@ NUM_STEPS_STOP = 150000
 
 BATCH_SIZE = 1
 
-DATA_DIRECTORY_GTA5 = '/work/GTA5'
+DATA_DIRECTORY_GTA5 = './data/GTA5'
 DATA_LIST_PATH_GTA5 = './dataset/gta5_list/val.txt'
 
-DATA_DIRECTORY_SYNTHIA = '/work/SYNTHIA'
+DATA_DIRECTORY_SYNTHIA = './data/SYNTHIA'
 DATA_LIST_PATH_SYNTHIA = './dataset/synthia_list/val.txt'
 
-DATA_DIRECTORY_CityScapes = '/work/CityScapes'
+DATA_DIRECTORY_CityScapes = './data/CityScapes'
 DATA_LIST_PATH_CityScapes = './dataset/cityscapes_list/val.txt'
 
-DATA_DIRECTORY_IDD = '/work/IDD'
+DATA_DIRECTORY_IDD = './data/IDD'
 DATA_LIST_PATH_IDD = './dataset/idd_list/val.txt'
 
 IGNORE_LABEL = 255
