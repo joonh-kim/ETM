@@ -14,7 +14,7 @@ import torch.nn as nn
 NUM_TARGET = 2
 EVAL_TARGET = -1
 TM = False
-DIR_NAME = 'AdaptSegNet_GCI/50000.pth'
+DIR_NAME = ''
 
 CityScapes = False
 IDD = True
