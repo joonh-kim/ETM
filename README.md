@@ -20,7 +20,7 @@
   https://idd.insaan.iiit.ac.in/dataset/download/
   (IDD - Segmentation (IDD 20k Part I))
   https://drive.google.com/file/d/1UUI4_101KCw17hEdqJIA7DlBSk4Q7ndu/view?usp=sharing
-  (Download the file from the above link. Extract the file, and replace the gtFine folder in the IDD dataset with this one.)
+  (Download the file from the link. Extract the file, and replace the gtFine folder in the IDD dataset with this one.)
 
 - Cross-City
 
