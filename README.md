@@ -55,7 +55,7 @@ Place the file in the ./pretrained folder.
   train.py
   ```
   The options should be changed before running.
-  Change the options by ```options_train.py```
+  Change the options in ```options_train.py```
 
 ## For Cross-City
   Run 
@@ -63,7 +63,7 @@ Place the file in the ./pretrained folder.
   trainCrossCity.py
   ```
   The options should be changed before running.
-  Change the options by ```options_trainCrossCity.py```
+  Change the options in ```options_trainCrossCity.py```
 
 
 # Evaluation
