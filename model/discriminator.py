@@ -26,6 +26,7 @@ class FCDiscriminator(nn.Module):
 
 		return x
 
+	
 class DHA(nn.Module):
 	def __init__(self, discriminator):
 		super(DHA, self).__init__()
