@@ -2,11 +2,14 @@ import torch.nn as nn
 
 affine_par = True
 
+
 def conv3x3(in_planes, out_planes, stride=1):
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
 
+
 def conv1x1(in_planes, out_planes):
     return nn.Conv2d(in_planes, out_planes, kernel_size=1, bias=False)
+
 
 class Bottleneck(nn.Module):
     expansion = 4
@@ -72,6 +75,7 @@ class Classifier_Module(nn.Module):
             out += self.conv2d_list[i + 1](x)
         return out
 
+    
 class TM(nn.Module):
     def __init__(self, inplanes, num_classes):
         super(TM, self).__init__()
@@ -98,6 +102,7 @@ class TM(nn.Module):
         out2 = self.module_list[1](x)
         return out1, out2
 
+    
 class ResNet_multi(nn.Module):
     def __init__(self, block, layers, args=None):
         super(ResNet_multi, self).__init__()
@@ -195,7 +200,6 @@ class ResNet_multi(nn.Module):
 
         return pred2, pred1, pred_ori2, pred_ori1
 
-
     def ResNet_params(self):
         b = []
 
@@ -248,6 +252,7 @@ class ResNet_multi(nn.Module):
                 optim_parameters += [{'params': self.TM_params(), 'lr': 10 * args.learning_rate}]
         return optim_parameters
 
+    
 def Deeplab_multi(args=None):
     model = ResNet_multi(Bottleneck, [3, 4, 23, 3], args=args)
     return model
