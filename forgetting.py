@@ -9,8 +9,8 @@ data = np.array([[-5.65, -8.32, -5.93, -1.86, -1.79, -1.96, -1.81, -3.53, -4.70,
                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
 
 targets = ['Rio', 'Rome', 'Taipei', 'Tokyo (current)']
-methods = ['FCNs in the Wild (H)', 'AdaptSegNet (H)', 'AdvEnt (H)', 'SIM (H)', 'CUDA Square (H)',
-           'FCNs in the Wild (L)', 'AdaptSegNet (L)', 'AdvEnt (L)', 'ACE (L)', 'SIM (L)', 'CUDA Square (L)']
+methods = ['FCN-W (H)', 'AdaptSegNet (H)', 'AdvEnt (H)', 'SIM (H)', 'ETM (H)',
+           'FCN-W (L)', 'AdaptSegNet (L)', 'AdvEnt (L)', 'ACE (L)', 'SIM (L)', 'ETM (L)']
 df = pd.DataFrame(data, targets, methods)
 
 linestyles = ['-', '-', '-', '-', '-', '--', '--', '--', '--', '--', '--']
@@ -34,8 +34,8 @@ data = np.array([[-4.79, -2.56, -2.04, -1.02, 0.16, -1.83, -2.64, -2.50, -6.53, 
                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
 
 targets = ['Rio', 'Rome', 'Taipei', 'Tokyo (current)']
-methods = ['FCNs in the Wild (H)', 'AdaptSegNet (H)', 'AdvEnt (H)', 'SIM (H)', 'CUDA Square (H)',
-           'FCNs in the Wild (L)', 'AdaptSegNet (L)', 'AdvEnt (L)', 'ACE (L)', 'SIM (L)', 'CUDA Square (L)']
+methods = ['FCN-W (H)', 'AdaptSegNet (H)', 'AdvEnt (H)', 'SIM (H)', 'ETM (H)',
+           'FCN-W (L)', 'AdaptSegNet (L)', 'AdvEnt (L)', 'ACE (L)', 'SIM (L)', 'ETM (L)']
 df = pd.DataFrame(data, targets, methods)
 
 linestyles = ['-', '-', '-', '-', '-', '--', '--', '--', '--', '--', '--']
@@ -74,7 +74,7 @@ p01 = plt.bar(0, FCNs_L,
              bar_width,
              color='g',
              alpha=alpha,
-             label='FCNs in the Wild')
+             label='FCN-W')
 
 p02 = plt.bar(bar_width, AdaptSegNet_L,
              bar_width,
@@ -104,13 +104,13 @@ p06 = plt.bar(5 * bar_width, CUDA_square_L,
              bar_width,
              color='r',
              alpha=alpha,
-             label='CUDA Square')
+             label='ETM')
 
 p11 = plt.bar(x, FCNs_H,
              bar_width,
              color='g',
              alpha=alpha,
-             label='FCNs in the Wild')
+             label='FCN-W')
 
 p12 = plt.bar(x + bar_width, AdaptSegNet_H,
              bar_width,
@@ -134,14 +134,14 @@ p15 = plt.bar(x + 4 * bar_width, CUDA_square_H,
              bar_width,
              color='r',
              alpha=alpha,
-             label='CUDA Square')
+             label='ETM')
 
 plt.title('From GTA5')
 plt.ylabel('Forgetting')
 plt.xlabel('Input Size')
 plt.xticks([2.5 * bar_width, x + 2 * bar_width], ["L", "H"])
 plt.legend((p01[0], p02[0], p03[0], p04[0], p05[0], p06[0]),
-           ('FCNs in the Wild', 'AdaptSegNet', 'AdvEnt', 'ACE', 'SIM', 'CUDA Square'), loc='lower center')
+           ('FCN-W', 'AdaptSegNet', 'AdvEnt', 'ACE', 'SIM', 'ETM'), loc='lower center')
 plt.show()
 
 # SYNTHIA, CityScapes-IDD
@@ -166,7 +166,7 @@ p01 = plt.bar(0, FCNs_L,
              bar_width,
              color='g',
              alpha=alpha,
-             label='FCNs in the Wild')
+             label='FCN-W')
 
 p02 = plt.bar(bar_width, AdaptSegNet_L,
              bar_width,
@@ -196,13 +196,13 @@ p06 = plt.bar(5 * bar_width, CUDA_square_L,
              bar_width,
              color='r',
              alpha=alpha,
-             label='CUDA Square')
+             label='ETM')
 
 p11 = plt.bar(x, FCNs_H,
              bar_width,
              color='g',
              alpha=alpha,
-             label='FCNs in the Wild')
+             label='FCN-W')
 
 p12 = plt.bar(x + bar_width, AdaptSegNet_H,
              bar_width,
@@ -226,13 +226,13 @@ p15 = plt.bar(x + 4 * bar_width, CUDA_square_H,
              bar_width,
              color='r',
              alpha=alpha,
-             label='CUDA Square')
+             label='ETM')
 
 plt.title('From SYNTHIA')
 plt.ylabel('Forgetting')
 plt.xlabel('Input Size')
 plt.xticks([2.5 * bar_width, x + 2 * bar_width], ["L", "H"])
 plt.legend((p01[0], p02[0], p03[0], p04[0], p05[0], p06[0]),
-           ('FCNs in the Wild', 'AdaptSegNet', 'AdvEnt', 'ACE', 'SIM', 'CUDA Square'), loc='lower center')
+           ('FCN-W', 'AdaptSegNet', 'AdvEnt', 'ACE', 'SIM', 'ETM'), loc='lower center')
 plt.show()
 
