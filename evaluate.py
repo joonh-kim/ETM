@@ -63,7 +63,7 @@ def get_arguments():
     Returns:
       A list of parsed arguments.
     """
-    parser = argparse.ArgumentParser(description="CUDA square framework")
+    parser = argparse.ArgumentParser(description="ETM framework")
     parser.add_argument("--source", action='store_true', default=SOURCE)
     parser.add_argument("--num-target", type=int, default=NUM_TARGET)
     parser.add_argument("--eval-target", type=int, default=EVAL_TARGET
