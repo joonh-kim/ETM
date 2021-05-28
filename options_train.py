@@ -64,7 +64,7 @@ SNAPSHOT_DIR = './snapshots/'
 
 class BaseOptions:
     def __init__(self):
-        parser = argparse.ArgumentParser(description="CUDA square framework")
+        parser = argparse.ArgumentParser(description="ETM framework")
         self.parser = parser
 
     def parse(self):
